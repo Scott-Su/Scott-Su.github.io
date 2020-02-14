@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://scott-su.github.io/</id>
     <title>Gridea</title>
-    <updated>2020-02-14T07:33:21.991Z</updated>
+    <updated>2020-02-14T07:38:05.148Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://scott-su.github.io/"/>
     <link rel="self" href="https://scott-su.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>保持耐心</subtitle>
     <logo>https://scott-su.github.io/images/avatar.png</logo>
     <icon>https://scott-su.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
