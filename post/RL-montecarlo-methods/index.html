@@ -1,13 +1,21 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>强化学习之蒙特卡洛方法（Monte Carlo Methods） | ScottSu的个人学习小站</title>
-<link rel="shortcut icon" href="https://scott-su.github.io//favicon.ico?v=1581814743128">
-<link href="https://cdn.remixicon.com/releases/v2.1.0/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://scott-su.github.io//favicon.ico?v=1581814823708">
 <link rel="stylesheet" href="https://scott-su.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="强化学习之蒙特卡洛方法（Monte Carlo Methods） | ScottSu的个人学习小站 - Atom Feed" href="https://scott-su.github.io//atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
@@ -17,82 +25,81 @@
 
 model-based VS model-free   (S,A,P?,R?，γ?)(S,A,P?,R?，\gamma?)(S,A..." />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://scott-su.github.io/">
-  <img class="avatar" src="https://scott-su.github.io//images/avatar.png?v=1581814743128" alt="">
-  </a>
-  <h1 class="site-title">
-    ScottSu的个人学习小站
-  </h1>
-  <p class="site-description">
-    保持耐心
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://scott-su.github.io/">
+        <img src="https://scott-su.github.io//images/avatar.png?v=1581814823708" class="site-logo">
+        <h1 class="site-title">ScottSu的个人学习小站</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      保持耐心
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://scott-su.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              强化学习之蒙特卡洛方法（Monte Carlo Methods）
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-02-15
-              </span>
-              <span>
-                1 min read
-              </span>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">强化学习之蒙特卡洛方法（Monte Carlo Methods）</h2>
+            <div class="post-date">2020-02-15</div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h3 id="关键概念">关键概念</h3>
+            <div class="post-content" v-pre>
+              <h3 id="关键概念">关键概念</h3>
 <pre><code>列出了一些需要注意的名词与概念，可结合下文具体内容学习，也可在学完后回顾这些概念是够已经掌握。
 </code></pre>
 <hr>
@@ -135,89 +142,50 @@ on-policy vs off-policy  就是<strong>采样产生数据（生成episode）的�
 <p><a href="https://www.jianshu.com/p/5fb2adbcb14b">《强化学习导论》：Monte Carlo Methods</a></p>
 <p><a href="https://blog.csdn.net/LagrangeSK/article/details/81182605">强化学习系列（五）：蒙特卡罗方法（Monte Carlo)</a></p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5">关键概念</a></li>
-<li><a href="#%E5%85%B7%E4%BD%93%E5%86%85%E5%AE%B9">具体内容</a></li>
-<li><a href="#%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%E7%9A%84%E7%BD%91%E7%AB%99">可以参考的网站</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-              </div>
             </div>
-          </article>
-        </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://scott-su.github.io/post/Manipulation review">
+                  <h3 class="post-title">
+                    A Review of Robot Learning for Manipulation:     Challenges, Representations, and Algorithms
+                  </h3>
+                </a>
+              </div>
+            
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://scott-su.github.io/post/Manipulation review">
-              <h3 class="post-title">
-                A Review of Robot Learning for Manipulation:     Challenges, Representations, and Algorithms
-              </h3>
-            </a>
+            
+
           </div>
-        
 
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://scott-su.github.io//atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+        </div>
       </div>
     </div>
 
-    <script>
-      hljs.initHighlightingOnLoad()
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+AOS.init();
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
+</script>
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
   </body>
 </html>
