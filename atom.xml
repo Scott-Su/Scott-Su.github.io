@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://scott-su.github.io/</id>
     <title>ScottSu的个人学习小站</title>
-    <updated>2020-02-16T11:04:00.376Z</updated>
+    <updated>2020-02-17T09:25:40.422Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://scott-su.github.io/"/>
     <link rel="self" href="https://scott-su.github.io/atom.xml"/>
@@ -10,6 +10,87 @@
     <logo>https://scott-su.github.io/images/avatar.png</logo>
     <icon>https://scott-su.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ScottSu的个人学习小站</rights>
+    <entry>
+        <title type="html"><![CDATA[Interactive Perception: Leveraging Action in Perception and Perception in Action]]></title>
+        <id>https://scott-su.github.io/post/interactive-perception-leveraging-action-in-perception-and-perception-in-action</id>
+        <link href="https://scott-su.github.io/post/interactive-perception-leveraging-action-in-perception-and-perception-in-action">
+        </link>
+        <updated>2020-02-17T08:04:01.000Z</updated>
+        <content type="html"><![CDATA[<p>本篇综述在对交互感知(Interactive Perception,IP)的一些基础概念与历史发展的介绍与厘清后，给出了一个比较清晰的标准来区分IP是以怎样的方式被应用到各类领域。</p>
+<h1 id="基本概念">基本概念</h1>
+<p>Forceful Interactions：</p>
+<blockquote>
+<p>Any <strong>action</strong> that exerts a potentially time-varying force upon the environment is a forceful interaction</p>
+</blockquote>
+<p>Create Novel Signals (CNS): 通过交互产生所返回的各类传感器信号。如触觉、视觉数据。</p>
+<p>Action Perception Regularity (APR)：<br>
+这些数据或者信号所具有的内部结构与特征（Regularity，个人理解，类似于CNN从一堆图像中提取出高层次的共同的特征与架构即feature）。</p>
+<blockquote>
+<p>Forceful interactions reveal regularities in the combined space <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>×</mo><mi>A</mi><mo>×</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">S×A×t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> of sensor information (S) and action parameters (A) over time (t).</p>
+<p>This regularity is constituted by the repeatable, multi-modal sensory data that is created when executing the same action in the same environment.</p>
+<p>Knowing this regularity corresponds to understanding the causal <strong>relationship between action and sensory response</strong> given specific environment properties.</p>
+</blockquote>
+<p>下图是对各种Perception方法的一个简单的总结与介绍。实际上Active Perception跟Interactive Perception 的关系也变得模糊了，之所以这么分，是因为在这篇综述之前的大部分AP方法还是主要单单基于视觉进行观察。所以不满足<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span></span></span></span>的条件</p>
+<img src="C:\Users\Scott Su\Documents\Gridea\论文图片\Interactive Perception Review\image-20200217134548618.png" alt="image-20200217134548618" style="zoom:67%;" />
+<h2 id="ip的应用与分类">IP的应用与分类</h2>
+<h3 id="应用">应用</h3>
+<img src="C:\Users\Scott Su\Documents\Gridea\论文图片\Interactive Perception Review\image-20200217135505407.png" alt="image-20200217135505407" style="zoom:75%;" />
+<p>这里以关节模型估计（Articulation Model Estimation）和基于触觉的属性估计（Haptic Property Estimation）为例进行简单说明：</p>
+<img src="C:\Users\Scott Su\Documents\Gridea\论文图片\Interactive Perception Review\image-20200217135702677.png" alt="image-20200217135702677" style="zoom:67%;" />
+<p>关节模型估计：如上图所示，机器人（由立体摄像机和视锥指示）试图估计桌上两个乐高积木的关节模型。在不同的情况下，机器人可以获得的信息量是不同的。[左]机器人只能改变视角以获取更多信息。[中]机器人可以观察到一个人举起乐高积木时产生的丰富的感觉信号。[右]机器人可以与场景交互并观察产生的感官信号。因此，它通过指定的交互可以得到更多信息。只有在最右边的情况下，才能可靠地评估出关节模型。</p>
+<img src="C:\Users\Scott Su\Documents\Gridea\论文图片\Interactive Perception Review\image-20200217140004066.png" alt="image-20200217140004066" style="zoom:67%;" />
+<p>基于触觉的属性估计：如上图所示，机器人试图估计球体的重量。在不同的情况下，机器人可以获得的信息量是不同的。[左]机器人只能改变视角以获取更多信息。[中]机器人能观察到一个人推球产生的丰富的感觉信号。[右]机器人可以推动球体本身，观察产生的感官信号，即球体静止的位置。在最后一种情况下，它通过指定的推力可以得到更多信息。只有在最右边的情况下，才能够可靠的评估出球体的质量。</p>
+<h3 id="分类">分类</h3>
+<img src="C:\Users\Scott Su\Documents\Gridea\论文图片\Interactive Perception Review\Interactive perception Leveragption and perception in action 8.png" alt="Interactive perception Leveragption and perception in action 8" style="zoom:33%;" />
+<p><br>
+<img src="C:\Users\Scott Su\Documents\Gridea\论文图片\Interactive Perception Review\Interactive perception Leveragption and perception in action 9.png" alt="Interactive perception Leveragption and perception in action 9" style="zoom:33%;" /></p>
+<p>这里的分类基于5大标准(A-F):</p>
+<p>A. How is the signal in <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>×</mo><mi>A</mi><mo>×</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">S×A×t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> leveraged?     B. What priors are employed?</p>
+<p>A.B融合在一起讲了<br>
+<img src="C:\Users\Scott Su\Documents\Gridea\论文图片\Interactive Perception Review\image-20200217145534522.png" alt="image-20200217145534522" style="zoom:60%;" /></p>
+<p>只要是使用到APR的IP方法，肯定都会有用到CNS的。前面提到过，其实这里的APR更具体地表述为先验知识（prior knowledge）,也是一种限制，更是一种通过交互来对内部特征的利用。</p>
+<blockquote>
+<p>A prior is a source of information that aids in the interpretation of the sensor signal by rejecting noise, possibly by projecting the signal into a lower dimensional space.</p>
+</blockquote>
+<p>比如要求物体是刚体（RO），机器人给定有push,grasp等操作，实际上就是对APR（所谓的regularity）的利用程度。上图所示最左边单纯靠视觉去追踪，其他啥也不用做，也不需要物体限制或者机器人操作；最右边就得满足很多限制要求的同时还会通过机械爪深度的进行交互，充分利用各类型传感器返回的各种信息。这就是exploit的差距。</p>
+<p>在B中有具体分为基于动力学模型的prior（<em>Priors on the Dynamics</em>），还有基于观察的prior(<em>Priors on the Observations</em>)。</p>
+<h4 id="priors-on-the-dynamics">Priors on the Dynamics</h4>
+<p>a)Given/Specified/Engineered Priors</p>
+<p>很好理解,如前所述,例如要求物体是刚体(rigid),机械臂在平面上(plane)进行push操作。</p>
+<p>b)Learned Priors</p>
+<p>通过action去学习动力学模型.(<em>learn a dynamics model of the environment given an action.</em>)</p>
+<p>例如GPS(Guided Policy Search):</p>
+<blockquote>
+<p>learn the mapping from current state to next best action in a policy search framework</p>
+</blockquote>
+<h4 id="priors-on-the-observations">Priors on the Observations</h4>
+<blockquote>
+<p>Regularities can also be encoded in the observation model that <strong>relates the state of the system to the raw sensory signals</strong>.</p>
+<p>In the case, where the mapping between state and observation is hand-designed, the state usually refers to some physical quantity.</p>
+<p>In the case where the state representation is learned,it is not so easily interpretable.</p>
+</blockquote>
+<p>实际上就是怎么从 raw sensory signal提取出state。</p>
+<p>a)Given/Specified/Engineered Observation Models</p>
+<p>基于专家先验手工设计的特征,可以理解为model-based,例如有个物体的数据库模型</p>
+<blockquote>
+<p>One example are models of multi-view or perspective geometry for camera sensors . Often, approaches also assume access to an object database (OD) that allows them to predict how the objects will be observed through a given sensor.</p>
+</blockquote>
+<p>b)Learned State Representations</p>
+<p>相当于CNN直接输入raw image提取特征。(<em>learn a suitable, task-specific state representation<br>
+directly from observations</em>)</p>
+<p>C. Does the approach perform action selection?</p>
+<p>实际上就是等同于RL中的explore 与exploit的关系</p>
+<blockquote>
+<p>balance between <strong>exploration (performing an action to improve perception as much as possible)</strong> and <strong>exploitation (performing an action thatmaximizes progress towards the manipulation goal)</strong>.</p>
+</blockquote>
+<p>D,E,F如字面意思理解, 不做赘述.</p>
+<p>D. What is the objective: Perception, Manipulation or Both?</p>
+<p>E. Are multiple sensor modalities exploited?</p>
+<p>F. How is uncertainty modeled and used?</p>
+<h1 id="思考与挑战">思考与挑战</h1>
+<p>目前基本都是利用基于视觉的传感器信息,怎么利用更多类型的感知信息?如何选择特征?explore or exploit?</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[强化学习之蒙特卡洛方法（Monte Carlo Methods）]]></title>
         <id>https://scott-su.github.io/post/RL-montecarlo-methods</id>
